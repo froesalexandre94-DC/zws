@@ -1,12 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: true,
+  output: 'standalone', // ✅ importante: SSR habilitado
   experimental: {
-    webpackBuildWorker: false,
-  },
-  webpack: (config) => {
-    config.optimization.runtimeChunk = 'single';
-    return config;
-  },
+    appDir: true
+  }
 };
 
 export default nextConfig;
