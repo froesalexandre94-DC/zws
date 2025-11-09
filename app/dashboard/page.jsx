@@ -1,12 +1,16 @@
 'use client';
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
+
+
 
 // importa o Plot apenas no client (evita self is not defined)
 const Plot = dynamic(() => import('react-plotly.js'), { ssr: false });
 
 export default function DashboardPage() {
   const [data, setData] = useState(null);
+  const router = useRouter();
 
   useEffect(() => {
     fetch('/api/vendas')
@@ -54,12 +58,20 @@ export default function DashboardPage() {
 
         {/* Produtos com baixo estoque */}
         <div className="bg-gray-900 rounded-lg p-6 shadow border border-gray-700">
+          <div>
           <p className="text-gray-400 text-sm uppercase">
             Produtos com Baixo Estoque
           </p>
           <h2 className="text-3xl font-bold text-yellow-400 mt-2">
             {totalBaixoEstoque}
           </h2>
+        </div>          {/* 👇 Botão dentro do card */}
+          <button
+            onClick={() => router.push('/estoque')}
+            className="mt-6 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg shadow transition-all"
+          >
+            Ir para Estoque
+          </button>
         </div>
 
         {/* Produto mais vendido */}
@@ -79,7 +91,7 @@ export default function DashboardPage() {
         <Plot
           data={[
             {
-              x: top10Sold.map((i) => i.produto),
+              x: top10Sold.map((i) => i. produto),
               y: top10Sold.map((i) => i.totalVendido),
               type: 'bar',
               text: top10Sold.map(

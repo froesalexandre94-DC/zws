@@ -37,7 +37,7 @@ p, span, li, td, th {
    Botões
 --------------------------------*/
 button, .btn {
-  @apply bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors duration-200;
+  @apply bg-blue-600 hover:bg-blue-700 text-white px-20 py-2 rounded-lg font-semibold transition-colors duration-200;
 }
 
 button:disabled {
